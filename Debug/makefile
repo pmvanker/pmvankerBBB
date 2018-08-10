@@ -13,23 +13,8 @@ RM := rm -rf
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(strip $(CC_DEPS)),)
--include $(CC_DEPS)
-endif
-ifneq ($(strip $(C++_DEPS)),)
--include $(C++_DEPS)
-endif
-ifneq ($(strip $(C_UPPER_DEPS)),)
--include $(C_UPPER_DEPS)
-endif
-ifneq ($(strip $(CXX_DEPS)),)
--include $(CXX_DEPS)
-endif
 ifneq ($(strip $(C_DEPS)),)
 -include $(C_DEPS)
-endif
-ifneq ($(strip $(CPP_DEPS)),)
--include $(CPP_DEPS)
 endif
 endif
 
@@ -43,16 +28,17 @@ all: PmvankerBBB
 # Tool invocations
 PmvankerBBB: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
-	@echo 'Invoking: Cross G++ Linker'
-	arm-linux-gnueabi-g++ -L/usr/arm-linux-gnueabi/lib -o "PmvankerBBB" $(OBJS) $(USER_OBJS) $(LIBS)
+	@echo 'Invoking: Cross GCC Linker'
+	arm-linux-gnueabi-gcc -L/usr/arm-linux-gnueabi/lib -o "PmvankerBBB" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(C_DEPS)$(CPP_DEPS) PmvankerBBB
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) PmvankerBBB
 	-@echo ' '
 
 .PHONY: all clean dependents
+.SECONDARY:
 
 -include ../makefile.targets
