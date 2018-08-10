@@ -55,13 +55,13 @@ int set_direction(int GPIOpin,int n)
 		fclose(fp);
 	return 0;
 }
-void write_GPIO(int GPIOPin,int n)
+int write_GPIO(int GPIOPin,int n)
 {
 	sprintf(GPIOvalue,"/sys/class/gpio/gpio%d/value",GPIOPin);
 	if((fp=fopen(GPIOvalue,"rb+"))==NULL)
 	{
 		printf("can not open GPIO value\n");
-		return ;
+		return 1;
 	}
 	if(n)
 	fwrite("1",sizeof(char),1,fp);
@@ -69,7 +69,7 @@ void write_GPIO(int GPIOPin,int n)
 	fwrite("0",sizeof(char),1,fp);
 	fclose(fp);
 }
-void flash(int GPIOPin)
+int flash(int GPIOPin)
 {
 	exportGPIO(GPIOPin);
 	set_direction(GPIOPin,1);

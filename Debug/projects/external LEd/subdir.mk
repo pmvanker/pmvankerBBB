@@ -3,21 +3,21 @@
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
-CPP_SRCS += \
-../src/thingSpeak.cpp 
+C_SRCS += \
+../projects/external\ LEd/led.c 
 
 OBJS += \
-./src/thingSpeak.o 
+./projects/external\ LEd/led.o 
 
-CPP_DEPS += \
-./src/thingSpeak.d 
+C_DEPS += \
+./projects/external\ LEd/led.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-src/%.o: ../src/%.cpp
+projects/external\ LEd/led.o: ../projects/external\ LEd/led.c
 	@echo 'Building file: $<'
-	@echo 'Invoking: Cross G++ Compiler'
-	arm-linux-gnueabi-g++ -I/usr/arm-linux-gnueabi/include -I/usr/arm-linux-gnueabi/include/c++/5 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	@echo 'Invoking: Cross GCC Compiler'
+	arm-linux-gnueabi-gcc -I/usr/arm-linux-gnueabi/include -I/usr/arm-linux-gnueabi/include/c++/5 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"projects/external LEd/led.d" -MT"projects/external\ LEd/led.d" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
