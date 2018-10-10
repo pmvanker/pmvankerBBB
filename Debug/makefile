@@ -8,7 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include projects/external\ LEd/subdir.mk
+-include src/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: PmvankerBBB
+all: pmvankerBBB
 
 # Tool invocations
-PmvankerBBB: $(OBJS) $(USER_OBJS)
+pmvankerBBB: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	arm-linux-gnueabi-g++ -L/usr/arm-linux-gnueabi/lib -o "PmvankerBBB" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-linux-gnueabi-g++ -L/usr/arm-linux-gnueabi/lib -o "pmvankerBBB" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(C_DEPS)$(CPP_DEPS) PmvankerBBB
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(C_DEPS)$(CPP_DEPS) pmvankerBBB
 	-@echo ' '
 
 .PHONY: all clean dependents
