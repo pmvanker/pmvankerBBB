@@ -5,7 +5,7 @@
  *      Author: ccare
  */
 #define led 13
-#include "pmvBBB.h"
+#include "Header files/pmvBBB.h"
 int main()
 {
 	pinMODE(led,"OUTPUT");
@@ -13,9 +13,9 @@ int main()
 	while(k--)
 	{
 		digitalWrite(led,1);
-		delay(500);
+		//delay(500);
 		digitalWrite(led,0);
-		delay(500);
+		//delay(500);
 	}
 	unexport(led);
 }

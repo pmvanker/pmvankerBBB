@@ -44,15 +44,20 @@ all: pmvankerBBB
 pmvankerBBB: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	arm-linux-gnueabi-g++ -L/usr/arm-linux-gnueabi/lib -o "pmvankerBBB" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-linux-gnueabihf-g++ -L/usr/arm-linux-gnueabihf/lib -o "pmvankerBBB" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
+	$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
 	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(C_DEPS)$(CPP_DEPS) pmvankerBBB
 	-@echo ' '
 
-.PHONY: all clean dependents
+post-build:
+	-scp /home/vvdn/eclipse-workspace/pmvankerBBB/Debug/pmvankerBBB debian@192.168.7.2:/home/debian/test/pmvankerBBB
+	-@echo ' '
+
+.PHONY: all clean dependents post-build
 
 -include ../makefile.targets
