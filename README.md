@@ -1,5 +1,4 @@
-Praful Vanker
-Mobile : 9408492091
+Hello Friends
+This is All my BeagleBone Black Experiments
+hope u find your req things
 
-this is Beaglebone Black customized sourcecode for 
-GPIO,I2C,PWM, 
